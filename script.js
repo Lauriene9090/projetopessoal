@@ -11,7 +11,7 @@ function adicionarMusica() {
 
 function listarMusica() {
     if (playlist.length === 0) {
-        console.log("A playlist está vazia.")
+        alert("A playlist está vazia.")
         return;
     }
 
@@ -19,7 +19,7 @@ function listarMusica() {
     for (let i = 0; i < playlist.length; i++) {
         mensagem += `${i + 1}. ${playlist[i].titulo} - ${playlist[i].artista} (${playlist[i].duracao})\n`
     }
-    console.log(mensagem)
+    alert(mensagem)
 }
 
 function removerMusica() {
@@ -30,19 +30,9 @@ function removerMusica() {
     for (let i = 0; i < playlist.length; i++) {
         if (playlist[i].titulo !== tituloRemover) {
             novaPlaylist.push(playlist[i])
-        } else {
-            encontrada = true;
         }
     }
-
-    if (encontrada) {
-        playlist = novaPlaylist;
-        console.log(`Musica "${tituloRemover}" removida com sucesso!`)
-    } else {
-        console.log(`Musica "${tituloRemover}" nao encontrada.`)
-    }
 }
-
 function editarMusica() {
     let tituloEditar = prompt("Digite o titulo exato da musica a ser editada:")
     for (let i = 0; i < playlist.length; i++) {
@@ -58,43 +48,6 @@ function editarMusica() {
     console.log(`Musica "${tituloEditar}" nao encontrada.`)
 }
 
-function exibirDuracaoTotal() {
-    let duracaoTotalSegundos = 0;
-
-    for (let i = 0; i < playlist.length; i++) {
-        let duracao = playlist[i].duracao
-        let minutos = 0
-        let segundos = 0
-        let separadorIndex = -1
-
-        for (let j = 0; j < duracao.length; j++) {
-            if (duracao[j] === ':') {
-                separadorIndex = j
-                break;
-            }
-        }
-
-        if (separadorIndex !== -1) {
-            for (let k = 0; k < separadorIndex; k++) {
-                minutos = minutos * 10 + (duracao[k] - '0')
-            }
-            for (let k = separadorIndex + 1; k < duracao.length; k++) {
-                segundos = segundos * 10 + (duracao[k] - '0')
-            }
-        }
-
-        duracaoTotalSegundos += (minutos * 60) + segundos
-    }
-
-    let minutosTotais = duracaoTotalSegundos / 60
-    let segundosTotais = duracaoTotalSegundos % 60
-
-    let minutosInteiros = parseInt(minutosTotais);
-    let segundosRestantes = duracaoTotalSegundos - minutosInteiros * 60
-
-    console.log(`Duracao total da playlist: ${minutosInteiros} minutos e ${segundosRestantes} segundos`)
-}
-
 function gerenciarPlaylist() {
     while (opcao !== '6') {
         opcao = prompt(`Menu:
@@ -102,8 +55,7 @@ function gerenciarPlaylist() {
 2. Listar musicas
 3. Remover musica
 4. Editar musica
-5. Exibir duracao total
-6. Sair
+5. sair
 
 Quantidade de musicas na playlist: ${playlist.length}
 Escolha uma opcao:`)
@@ -122,9 +74,6 @@ Escolha uma opcao:`)
                 editarMusica()
                 break;
             case '5':
-                exibirDuracaoTotal()
-                break;
-            case '6':
                 console.log("Saindo...")
                 break;
             default:
