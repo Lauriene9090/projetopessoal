@@ -23,16 +23,26 @@ function listarMusica() {
 }
 
 function removerMusica() {
-    let tituloRemover = prompt("Digite o título exato da musica a ser removida:")
+    let tituloRemover = prompt("Digite o título da musica a ser removida:")
     let novaPlaylist = []
-    let encontrada = false
+    let encontrada = false;
 
     for (let i = 0; i < playlist.length; i++) {
         if (playlist[i].titulo !== tituloRemover) {
             novaPlaylist.push(playlist[i])
+        } else {
+            encontrada = true; 
         }
     }
+
+    if (encontrada) {
+        playlist = novaPlaylist
+        console.log(`A música "${tituloRemover}" foi removida com sucesso.`)
+    } else {
+        console.log(`A música "${tituloRemover}" não foi encontrada na playlist.`)
+    }
 }
+
 function editarMusica() {
     let tituloEditar = prompt("Digite o titulo exato da musica a ser editada:")
     for (let i = 0; i < playlist.length; i++) {
@@ -74,7 +84,7 @@ Escolha uma opcao:`)
                 editarMusica()
                 break;
             case '5':
-                console.log("Saindo...")
+                alert:("Saindo...")
                 break;
             default:
                 console.log("Opcao invalida, tente novamente.")
