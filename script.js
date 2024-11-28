@@ -59,7 +59,7 @@ function editarMusica() {
 }
 
 function gerenciarPlaylist() {
-    while (opcao !== '6') {
+    while (opcao !== '5') {
         opcao = prompt(`Menu:
 1. Adicionar musica
 2. Listar musicas
@@ -84,7 +84,7 @@ Escolha uma opcao:`)
                 editarMusica()
                 break;
             case '5':
-                alert:("Saindo...")
+                console.log("Saindo...")
                 break;
             default:
                 console.log("Opcao invalida, tente novamente.")
